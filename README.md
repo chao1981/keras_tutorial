@@ -193,4 +193,30 @@ model.add(Dense(64, input_dim=64,
  layer1=Concatenate([out_a,out_b]) ##wrong
 
 ```
+### [keras后端切换](http://keras-cn.readthedocs.io/en/latest/backend/)
+Keras是一个模型级的库，提供了快速构建深度学习网络的模块。Keras并不处理如张量乘法、卷积等底层操作。
+这些操作依赖于某种特定的、优化良好的张量操作库。Keras依赖于处理张量的库就称为“后端引擎”。Keras提供
+了三种后端引擎Theano/Tensorflow/CNTK，并将其函数统一封装，使得用户可以以同一个接口调用不同后端引擎的
+函数．</br>
+
+* 切换后端
+```
+##window用户
+修改keras.json
+$HOME/.keras/keras.json
+{
+    "image_data_format": "channels_last",
+    "epsilon": 1e-07,
+    "floatx": "float32",
+    "backend": "tensorflow"
+}
+
+修改backend即可切换tensorflow,theano,CNTK.
+
+
+也可以通过命令行修改:
+>>>KERAS_BACKEND=tensorflow python -c "from keras import backend;"
+
+```
+
 

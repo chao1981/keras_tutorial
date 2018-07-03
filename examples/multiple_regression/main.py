@@ -5,18 +5,18 @@ import numpy as np
 from keras.utils import plot_model
 ###################data loading#############################
 
-x_train=np.random.rand(3200,10)
-y_train=np.random.rand(3200,2)
+x_train=np.random.rand(3200,1)
+y_train=np.random.rand(3200,10)
 
 #####################model###############################
 model=Sequential()
-model.add(Dense(256,input_shape=(10,),name='layer1'))
-model.add(Dense(2,name='layer2'))
+model.add(Dense(256,input_shape=(x_train.shape[1],),name='layer1'))
+model.add(Dense(10,name='layer2'))
 model.compile(optimizer='sgd',loss='mse')
 plot_model(model,"model.png",show_shapes=True)
 h=model.fit(x_train,y_train,batch_size=32,epochs=10,validation_split=0.4)
 
-X_test=np.random.rand(1,10)
+X_test=np.random.rand(1,1)
 print(X_test)
 print(model.predict(X_test))
 

@@ -80,11 +80,11 @@ model.compile(loss='categorical_crossentropy',
 #model.save_weights(weights,accuracy=False)
 
 ##################model saving########################################
-checkpoint = ModelCheckpoint('best_model_improved.h5',  # model filename
-                             monitor='val_loss', # quantity to monitor
-                             verbose=0, # verbosity - 0 or 1
+checkpoint = ModelCheckpoint('models/deform_cnn.h5',  # model filename
+                             monitor='val_acc', # quantity to monitor
+                             verbose=1, # verbosity - 0 or 1
                              save_best_only= True, # The latest best model will not be overwritten
-                             mode='auto') # The decision to overwrite model is m
+                             mode='max') # The decision to overwrite model is m
 
 def scheduler(epoch):
   if epoch < 80:

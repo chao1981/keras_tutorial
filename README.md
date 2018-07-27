@@ -185,14 +185,22 @@ def l1_reg(weight_matrix):
 model.add(Dense(64, input_dim=64,
                 kernel_regularizer=l1_reg)
 ```
-### 陷阱注意
+### 陷阱注意1
 ```
  from keras.layers import concatenate 
  from keras.layers import Concatenate
  layer1=concatenate([out_a,out_b]) ##right
  layer1=Concatenate([out_a,out_b]) ##wrong
+ 
 
 ```
+### 陷阱注意2
+keras模型刚刚建立时,每层的参数都为空.</br>
+需要inference一遍.才能获得参数信息.</br>
+
+
+
+
 ### [keras后端切换](http://keras-cn.readthedocs.io/en/latest/backend/)
 Keras是一个模型级的库，提供了快速构建深度学习网络的模块。Keras并不处理如张量乘法、卷积等底层操作。
 这些操作依赖于某种特定的、优化良好的张量操作库。Keras依赖于处理张量的库就称为“后端引擎”。Keras提供

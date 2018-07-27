@@ -32,8 +32,9 @@ model.add(Activation("relu"))
 model.add(Dense(10))
 model.add(Activation('softmax'))
 model.summary()
-
-
+from keras.utils import plot_model
+plot_model(model,"model.png",show_shapes=True)
+exit()
 ##编译
 model.compile(optimizer='sgd',loss='categorical_crossentropy',metrics=['accuracy'])
 # model.compile(optimizer='rmsprop',loss='binary_crossentropy',metrics=['accuracy'])

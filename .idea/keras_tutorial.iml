@@ -5,6 +5,8 @@
       <sourceFolder url="file://$MODULE_DIR$/graph_conv_network" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/examples/deform_conv" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/visualization/keras-cam" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/visualization/features" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/visualization/features/Salicon_Saliency" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

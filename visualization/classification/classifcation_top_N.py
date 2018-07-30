@@ -18,7 +18,7 @@ def decode_predictions(preds, top=5):
 model=Sequential()
 model.add(Conv2D(32,3,strides=2,input_shape=(32,32,3),activation='relu',name='conv1'))
 model.add(MaxPool2D((2,2)))
-model.add(Conv2D(16,3,strides=2,activation='relu'))
+model.add(Conv2D(16,3,strides=2,activation='relu',name='conv2'))
 model.add(MaxPool2D((2,2)))
 model.add(Flatten())
 model.add(Dense(2,activation='softmax'))
@@ -43,11 +43,12 @@ def get_output_layer(model, layer_name):
   layer = layer_dict[layer_name]
   return layer
 
-final_conv_layer = get_output_layer(model, "conv1")
-get_output = K.function([model.layers[0].input], [final_conv_layer.output,model.layers[-1].output])
-[conv_outputs,prediction] = get_output([x])
+final_conv_layer = get_output_layer(model, "conv2")
+get_output = K.function([model.layers[0].input], [final_conv_layer.output])
+[conv_outputs] = get_output([x])
+
 print(conv_outputs.shape)
-print(prediction.shape)
+exit()
 #########################################################################################
 
 #########################################################################################

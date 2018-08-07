@@ -16,8 +16,7 @@ def visualize_class_activation_map( img_path, output_path):
         original_img = cv2.imread(img_path, 1)
         original_img= cv2.resize(original_img,(224,224))
         import matplotlib.pyplot as plt
-        plt.imshow(original_img)
-        plt.show()
+       
         print("original_img shape:",original_img.shape)
         width, height, _ = original_img.shape
 
@@ -27,18 +26,22 @@ def visualize_class_activation_map( img_path, output_path):
         print("IMG  shape:",img.shape)
         #Get the 512 input weights to the softmax.
         class_weights = model.layers[-1].get_weights()[0]
+        print("class_weights",class_weights.shape)
         final_conv_layer = get_output_layer(model, "block5_conv3")
         get_output = K.function([model.layers[0].input], [final_conv_layer.output])
         [conv_outputs] = get_output([img])
+        print(conv_outputs.shape)
         conv_outputs = conv_outputs[0, :, :, :]
         print(conv_outputs.shape)
         print(class_weights.shape)
         #Create the class activation map.
         cam = np.zeros(dtype = np.float32, shape = conv_outputs.shape[0:2])
-        for i, w in enumerate(class_weights[:512,1]):
+        for i, w in enumerate(class_weights[:512,2]):
                 cam += w * conv_outputs[ :, :,i]
         # print("predictions", predictions)
         cam /= np.max(cam)
+        plt.imshow(cam)
+        plt.show()
         cam = cv2.resize(cam, (height, width))
         heatmap = cv2.applyColorMap(np.uint8(255*cam), cv2.COLORMAP_JET)
         heatmap[np.where(cam < 0.2)] = 0
@@ -59,5 +62,5 @@ def get_args():
 
 if __name__ == '__main__':
   args = get_args()
-  visualize_class_activation_map(args.image_path, args.output_path)
+  visualize_class_activation_map("test.jpg", "out.png")
  

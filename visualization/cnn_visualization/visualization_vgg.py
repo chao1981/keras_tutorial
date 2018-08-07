@@ -205,6 +205,7 @@ display_images(random_image[..., ::-1], cols=2)
 
 predictions = model.predict(random_image)
 vgg16.decode_predictions(predictions)
+
 ###################################################################################################
 
 ##Maximize Activations for a Hidden Filter

@@ -28,3 +28,4 @@ def visualize_cat(model, cat):
 
 visualize_cat(model, cat)
 plt.show()
+

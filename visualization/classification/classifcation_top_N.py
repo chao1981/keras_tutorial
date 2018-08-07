@@ -32,7 +32,7 @@ x=preprocess_input(x)
 y=model.predict(x)
 
 print("predictions :",decode_predictions(y,2))
-
+exit()
 #########################################################################################
 ##获得keras模型中某一层的输出
 

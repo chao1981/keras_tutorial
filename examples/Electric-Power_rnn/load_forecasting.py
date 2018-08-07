@@ -41,6 +41,7 @@ print ("Data  shape: ", matrix_load.shape)
 train_row = int(round(0.9 * matrix_load.shape[0]))
 train_set = matrix_load[:train_row, :]
 
+
 # shuffle the training set (but do not shuffle the test set)
 np.random.shuffle(train_set)
 # the training set
@@ -71,7 +72,7 @@ model.compile(loss="mse", optimizer="rmsprop")
 from keras.utils import plot_model
 plot_model(model,"model.png",show_shapes=True)
 # train the model
-model.fit(X_train, y_train, batch_size=512, epochs=50, validation_split=0.05, verbose=1)
+model.fit(X_train, y_train, batch_size=512, epochs=10, validation_split=0.05, verbose=1)
 
 # evaluate the result
 test_mse = model.evaluate(X_test, y_test, verbose=1)
